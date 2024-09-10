@@ -1,20 +1,17 @@
 package calculator_3;
 
-import java.util.Scanner;
 
 public class ArithmeticCalculator {
     public String operator;
     public double firstOperand;
     public double secondOperand;
 
-    public double calculate(int firstOperand, int secondOperand, String operator){
+    public double calculate(double firstOperand, double secondOperand, String operator){
 
-        OperatorType[] array = OperatorType.values();
+        OperatorType operatorType = OperatorType.valueOf(operator);
 
-        Scanner sc = new Scanner(System.in);
 
-        for(OperatorType o: array){
-            switch (o){
+            switch (operatorType){
                 case ADD :
                     return OperatorType.ADD.calculate(firstOperand, secondOperand);
                 case SUBTRACT:
@@ -25,12 +22,8 @@ public class ArithmeticCalculator {
                     return OperatorType.DIVIDE.calculate(firstOperand, secondOperand);
 
                 default:
-                    throw new IllegalStateException("Unexpected value: " + o);
+                    throw new IllegalStateException("Unexpected value: " + operatorType);
             }
         }
-
-        return 0;
-    }
-
 
 }

@@ -1,6 +1,5 @@
 package calculator_3;
 
-import calculator_2.Calculator;
 
 import java.util.Scanner;
 
