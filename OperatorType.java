@@ -1,17 +1,23 @@
 package calculator_3;
 
+import java.util.function.BiFunction;
+
 public enum OperatorType {
-    ADD("+"),
-    SUBTRACT("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
-    final private String operator;
+    ADD("+", (num1, num2)-> num1 + num2),
+    SUBTRACT("-", (num1, num2)-> num1 - num2),
+    MULTIPLY("*", (num1, num2)-> num1 * num2),
+    DIVIDE("/", (num1, num2)-> num1 / num2);
 
-    OperatorType(String operator){
+    public String operator;
+    private final BiFunction<Double, Double, Double> biFunction;
+
+    OperatorType(String operator, BiFunction<Double, Double, Double> biFunction){
         this.operator = operator;
+        this.biFunction = biFunction;
     }
 
-    String getOperator(){
-        return operator;
+    public double calculate(double a, double b){
+        return this.biFunction.apply(a,b);
     }
+
 }
